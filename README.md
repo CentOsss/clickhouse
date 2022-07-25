@@ -1,29 +1,46 @@
-# Домашнее задание к занятию "08.02 Работа с Playbook"
-
-## Подготовка к выполнению
-
-1. (Необязательно) Изучите, что такое [clickhouse](https://www.youtube.com/watch?v=fjTNS2zkeBs) и [vector](https://www.youtube.com/watch?v=CgEhyffisLY)
-2. Создайте свой собственный (или используйте старый) публичный репозиторий на github с произвольным именем.
-3. Скачайте [playbook](./playbook/) из репозитория с домашним заданием и перенесите его в свой репозиторий.
-4. Подготовьте хосты в соответствии с группами из предподготовленного playbook.
-
-## Основная часть
-
-1. Приготовьте свой собственный inventory файл `prod.yml`.
-2. Допишите playbook: нужно сделать ещё один play, который устанавливает и настраивает [vector](https://vector.dev).
-3. При создании tasks рекомендую использовать модули: `get_url`, `template`, `unarchive`, `file`.
-4. Tasks должны: скачать нужной версии дистрибутив, выполнить распаковку в выбранную директорию, установить vector.
-5. Запустите `ansible-lint site.yml` и исправьте ошибки, если они есть.
-6. Попробуйте запустить playbook на этом окружении с флагом `--check`.
-7. Запустите playbook на `prod.yml` окружении с флагом `--diff`. Убедитесь, что изменения на системе произведены.
-8. Повторно запустите playbook с флагом `--diff` и убедитесь, что playbook идемпотентен.
-9. Подготовьте README.md файл по своему playbook. В нём должно быть описано: что делает playbook, какие у него есть параметры и теги.
-10. Готовый playbook выложите в свой репозиторий, поставьте тег `08-ansible-02-playbook` на фиксирующий коммит, в ответ предоставьте ссылку на него.
 
 ---
 
-### Как оформить ДЗ?
+## Deploy `clickhouse and vector`
 
-Выполненное домашнее задание пришлите ссылкой на .md-файл в вашем репозитории.
+### Requirements
 
----
+- Ansible 2.13.2
+- Terraform 1.2.5
+- Python 3.8.10
+
+
+Ansible playbook for deploy Clickhouse pakages and Vector on one node to Yandex Cloud. 
+Install clickhouse-server, clickhouse-client, clickhouse-common and Vector.
+
+To use this playbook you need to specify your ip address, host and user in your `inventory/prod.yml` file after deployed node01.cloud 
+```YAML
+Example:
+  ...
+  clickhouse:
+  hosts:
+    clickhouse-01:
+      ansible_host: 51.250.95.242
+      ansible_connection: ssh
+      remote_user: centos
+      private_key_file: { ssh_key }
+      host_key_checking: False
+```
+
+
+
+| Variable                            | Comment                                                                        | Required | Example/Default                |
+| ----------------------------------- | ------------------------------------------------------------------------------ | -------- | ------------------------------ |
+| clickhouse_version                | Version of clickhouse                       | yes      | `22.3.3.44`                  |
+| clickhouse_packages               | List of packages                                      | yes      | `clickhouse-server` `clickhouse-client` `clickhouse-common`                 |
+| ssh_key       | Use your own ssh keys                                                        | no      | ``                     |
+| vector_version          | Version of Vector                           | yes      | `0.22.0`                     |
+
+
+
+
+
+### License
+
+### Author Information
+Ostap Shvalev, mindgam@gmail.com

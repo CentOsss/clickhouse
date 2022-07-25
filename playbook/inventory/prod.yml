@@ -2,7 +2,7 @@
 clickhouse:
   hosts:
     clickhouse-01:
-      ansible_host: 51.250.6.56
+      ansible_host: 51.250.95.242
       ansible_connection: ssh
       remote_user: centos
       private_key_file: { ssh_key }
