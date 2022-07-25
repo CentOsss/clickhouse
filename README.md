@@ -8,6 +8,8 @@
 - Ansible 2.13.2
 - Terraform 1.2.5
 - Python 3.8.10
+- Task version: 3.14.0
+
 
 
 Ansible playbook for deploy Clickhouse pakages and Vector on one node to Yandex Cloud. 
