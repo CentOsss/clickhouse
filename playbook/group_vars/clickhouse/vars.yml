@@ -5,3 +5,4 @@ clickhouse_packages:
   - clickhouse-server
   - clickhouse-common-static
 ssh_key: ~/.ssh/id_rsa
+vector_version: "0.22.0"
