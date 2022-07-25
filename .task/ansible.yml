@@ -1,0 +1,11 @@
+version: '3'
+
+#silent: true
+
+tasks:
+
+  playbook:
+    dir: playbook
+    cmds:
+      - echo "Run ansible-playbook"
+      - ansible-playbook -i inventory/prod.yml site.yml

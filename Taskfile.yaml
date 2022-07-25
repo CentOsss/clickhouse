@@ -1,0 +1,21 @@
+version: '3'
+
+dotenv: ['.env']
+silent: false
+
+includes:
+  terraform: .task/terraform.yml
+  ansible: .task/ansible.yml
+
+tasks:
+  deploy:
+    cmds:
+      - task: terraform:apply
+  playbook:
+    cmds:
+      - task: ansible:playbook
+  destroy:
+    cmds:
+      - task: terraform:destroy
+
+ 
