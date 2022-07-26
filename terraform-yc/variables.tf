@@ -9,3 +9,10 @@ variable "yandex_folder_id" {
 variable "centos-7" {
   default = "fd8ksb92cu689husemj7"
 }
+
+variable "yc_virtual_machines" {
+  description = "Yandex.Cloud virtual machines variables"
+  type = map(object({
+    hostname      = string
+  }))
+}
