@@ -1,7 +1,7 @@
 
 ---
 
-## Deploy `clickhouse and vector`
+## Deploy `clickhouse, vector and lightouse`
 
 ### Requirements
 
@@ -12,23 +12,29 @@
 
 
 
-Ansible playbook for deploy Clickhouse pakages and Vector on one node to Yandex Cloud. 
-Install clickhouse-server, clickhouse-client, clickhouse-common and Vector.
+Ansible playbook for deploy Clickhouse pakages, Vector and lightouse on three nodes to Yandex Cloud. 
+clickhouse node: Install clickhouse-server, clickhouse-client, clickhouse-common
+vector node: Install vector
+lighhouse node: Install nginx and lighhouse
 
-To use this playbook you need to specify your ip address, host and user in your `inventory/prod.yml` file after deployed node01.cloud 
+For this project inventory file is generated automatically
+To use this playbook you need to specify your clickhouse server ip address in group_vars/vector.yml 
 ```YAML
 Example:
   ...
-  clickhouse:
-  hosts:
-    clickhouse-01:
-      ansible_host: 51.250.95.242
-      ansible_connection: ssh
-      remote_user: centos
-      private_key_file: { ssh_key }
-      host_key_checking: False
-```
+  sinks:
+    clickhouse:
+      type: clickhouse
+      inputs:
+        - log
+      database: logs
+      endpoint: http://51.250.75.6:8123
+      table: my_table
+      compression: gzip
+      healthcheck: false
+      skip_unknown_fields: true
 
+```
 
 
 | Variable                            | Comment                                                                        | Required | Example/Default                |
@@ -37,10 +43,22 @@ Example:
 | clickhouse_packages               | List of packages                                      | yes      | `clickhouse-server` `clickhouse-client` `clickhouse-common`                 |
 | ssh_key       | Use your own ssh keys                                                        | no      | ``                     |
 | vector_version          | Version of Vector                           | yes      | `0.22.0`                     |
+| lighthouse_vcs          | Repository link                          | yes      | `https://github.com/VKCOM/lighthouse.git`                     |
+| lighthouse_location_dir          | System directory                         | yes      | `/home/centos/lighhouse`                     |
 
+Deploy stack.
+Example:
+```
+git clone https://github.com/CentOsss/clickhouse.git && cd clickhouse
 
+task deploy # create infrastructure in yandex cloud
 
+change ip address in group_vars/vector.yml and run
 
+task playbook # play ansible playbook
+
+task destroy # for destroy your infrastructure 
+```
 
 ### License
 

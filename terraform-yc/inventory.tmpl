@@ -1,0 +1,27 @@
+---
+clickhouse:
+  hosts:
+    clickhouse:
+      ansible_host: ${ip_clickhouse}
+      ansible_connection: ssh
+      remote_user: centos
+      private_key_file: { ssh_key }
+      host_key_checking: False
+
+vector:
+  hosts:
+    vector:
+      ansible_host: ${ip_vector}
+      ansible_connection: ssh
+      remote_user: centos
+      private_key_file: { ssh_key }
+      host_key_checking: False
+      
+lighthouse:
+  hosts:
+    lighthouse:
+      ansible_host: ${ip_lighthouse}
+      ansible_connection: ssh
+      remote_user: centos
+      private_key_file: { ssh_key }
+      host_key_checking: False
