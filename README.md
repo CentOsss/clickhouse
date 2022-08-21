@@ -1,7 +1,7 @@
 
 ---
 
-## Deploy `clickhouse, vector and lightouse`
+## Deploy clickhouse, vector and lightouse
 
 ### Requirements
 
@@ -46,8 +46,9 @@ Example:
 | lighthouse_vcs          | Repository link                          | yes      | `https://github.com/VKCOM/lighthouse.git`                     |
 | lighthouse_location_dir          | System directory                         | yes      | `/home/centos/lighhouse`                     |
 
-Deploy stack.
-Example:
+
+### Example playbook
+
 ```
 git clone https://github.com/CentOsss/clickhouse.git && cd clickhouse
 
@@ -61,6 +62,10 @@ task destroy # for destroy your infrastructure
 ```
 
 ### License
+MIT
 
 ### Author Information
 Ostap Shvalev, mindgam@gmail.com
+
+### Bugs
+You tell me
