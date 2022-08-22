@@ -13,9 +13,6 @@
 
 
 Ansible playbook for deploy Clickhouse pakages, Vector and lightouse on three nodes to Yandex Cloud. 
-clickhouse node: Install clickhouse-server, clickhouse-client, clickhouse-common
-vector node: Install vector
-lighhouse node: Install nginx and lighhouse
 
 For this project inventory file is generated automatically
 To use this playbook you need to specify your clickhouse server ip address in group_vars/vector.yml 
@@ -46,21 +43,22 @@ Example:
 | lighthouse_vcs          | Repository link                          | yes      | `https://github.com/VKCOM/lighthouse.git`                     |
 | lighthouse_location_dir          | System directory                         | yes      | `/home/centos/lighhouse`                     |
 
-Deploy stack.
-Example:
+### Example playbook
 ```
-git clone https://github.com/CentOsss/clickhouse.git && cd clickhouse
+1. git clone  && cd clickhouse
 
-task deploy # create infrastructure in yandex cloud
+2. task deploy # create infrastructure in yandex cloud
 
-change ip address in group_vars/vector.yml and run
+3. change your ip address in group_vars/vector.yml
 
-task playbook # play ansible playbook
+4. task playbook # play ansible playbook
 
-task destroy # for destroy your infrastructure 
+5. task destroy # for destroy your infrastructure 
 ```
 
 ### License
+MIT
 
 ### Author Information
 Ostap Shvalev, mindgam@gmail.com
+Bugs: you tell me
