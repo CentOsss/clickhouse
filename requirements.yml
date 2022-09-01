@@ -9,7 +9,7 @@
     version: "v1.0.0"
     name: vector 
 
-  # - src: git@github.com:CentOsss/vector-role.git
-  #   scm: git
-  #   version: "1.0.0"
-  #   name: vector 
+  - src: git@github.com:CentOsss/lighhouse-role.git
+    scm: git
+    version: "1.0.0"
+    name: lighthouse

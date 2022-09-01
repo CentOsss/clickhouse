@@ -26,6 +26,7 @@ tasks:
       Deploy your clickhouse project in the selected environment.
       Please make sure that you run `task init` first.
     cmds:
+      - task: ansible:galaxy
       - task: ansible:playbook
 
   destroy:
