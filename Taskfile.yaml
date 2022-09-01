@@ -1,3 +1,4 @@
+# https://taskfile.dev
 version: '3'
 
 dotenv: ['.env']
@@ -8,13 +9,31 @@ includes:
   ansible: .task/ansible.yml
 
 tasks:
-  deploy:
+  init:
+    desc: Init infrastructure to Yandex Cloud
+    summary: |
+      Initialize project
+
+      Create infrastructure for the project.
     cmds:
       - task: terraform:apply
-  playbook:
+
+  deploy:
+    desc: Deploy project
+    summary: |
+      Deploy project
+
+      Deploy your clickhouse project in the selected environment.
+      Please make sure that you run `task init` first.
     cmds:
       - task: ansible:playbook
+
   destroy:
+    desc: Destroy project
+    summary: |
+      Destroy project
+
+      Destroy your clickhouse project.
     cmds:
       - task: terraform:destroy
 
